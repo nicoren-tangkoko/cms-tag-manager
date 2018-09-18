@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="content">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">cs-csfeature__logo</item>
+            </item>
+        </argument>
+    </fieldset>
+    <fieldset name="tags" sortOrder="13">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Tags</label>
+        </settings>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">cs-csfeature__logo</item>
+            </item>
+        </argument>
+        <field name="cms_page_tags">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Tags</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="dataScope" xsi:type="string">cms_page_tags</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="notice" xsi:type="string" translate="true">Please insert all tags assigned to this CMS Page. Follow comma separated pattern without surrounding spaces. Example: "first tag,second tag,tagThree,lastTag"</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="image_teaser" sortOrder="17">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Image Teaser</label>
+        </settings>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">cs-csfeature__logo</item>
+            </item>
+        </argument>
+        <field name="cms_image_teaser">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Image Teaser</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="componentType" xsi:type="string">fileUploader</item>
+                    <item name="notice" xsi:type="string" translate="true">Allowed file types: png, gif, jpg, jpeg, svg. Max file size 1MB.</item>
+                    <item name="maxFileSize" xsi:type="number">1048576</item>
+                    <item name="allowedExtensions" xsi:type="string">jpg jpeg gif png svg</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="string">cmstags/teaser/upload</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <!--<field name="cms_page_tags">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="options" xsi:type="object">MageSuite\CmsTagManager\Model\Config\Source\TagsOptions</item>-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="label" xsi:type="string" translate="true">Cms Page Tags</item>-->
+                    <!--<item name="componentType" xsi:type="string">field</item>-->
+                    <!--<item name="formElement" xsi:type="string">select</item>-->
+                    <!--<item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>-->
+                    <!--<item name="elementTmpl" xsi:type="string">ui/grid/filters/chips</item>-->
+                    <!--<item name="dataScope" xsi:type="string">cms_page_tags</item>-->
+                    <!--<item name="filterOptions" xsi:type="boolean">false</item>-->
+                    <!--<item name="showCheckbox" xsi:type="boolean">false</item>-->
+                    <!--<item name="chipsEnabled" xsi:type="boolean">true</item>-->
+                    <!--<item name="disableLabel" xsi:type="boolean">true</item>-->
+                    <!--<item name="multiple" xsi:type="boolean">true</item>-->
+                    <!--<item name="sortOrder" xsi:type="number">30</item>-->
+                    <!--<item name="listens" xsi:type="array">-->
+                        <!--<item name="newOption" xsi:type="string">toggleOptionSelected</item>-->
+                    <!--</item>-->
+                    <!--<item name="required" xsi:type="boolean">true</item>-->
+                    <!--<item name="source" xsi:type="string">conditions</item>-->
+                    <!--<item name="validation" xsi:type="array">-->
+                        <!--<item name="required-entry" xsi:type="boolean">false</item>-->
+                    <!--</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+        <!--</field>-->
+    </fieldset>
+</form>
