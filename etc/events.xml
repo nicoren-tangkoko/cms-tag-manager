@@ -1,9 +1,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="cms_page_save_after">
-        <observer name="creativestyle_cms_save_after" instance="MageSuite\CmsTagManager\Observer\AfterCmsPageSave"/>
+        <observer name="magesuite_cms_save_after" instance="MageSuite\CmsTagManager\Observer\AfterCmsPageSave"/>
     </event>
     <event name="cms_page_save_before">
-        <observer name="creativestyle_cms_save_before" instance="MageSuite\CmsTagManager\Observer\BeforeCmsPageSave"/>
+        <observer name="magesuite_cms_save_before" instance="MageSuite\CmsTagManager\Observer\BeforeCmsPageSave"/>
     </event>
 </config>

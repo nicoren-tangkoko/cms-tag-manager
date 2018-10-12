@@ -5,9 +5,9 @@ namespace MageSuite\CmsTagManager\Controller\Adminhtml\Teaser;
 class Upload extends \Magento\Framework\App\Action\Action
 {
     /**
-     * @var \MageSuite\CmsTagManager\Service\Processor\UploadTeaserFactory
+     * @var \MageSuite\Opengraph\Service\Processor\UploadImageFactory
      */
-    private $uploadTeaser;
+    protected $uploadImage;
 
     /**
      * Save constructor.
@@ -15,11 +15,11 @@ class Upload extends \Magento\Framework\App\Action\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \MageSuite\CmsTagManager\Service\Processor\UploadTeaserFactory $uploadTeaser
+        \MageSuite\Opengraph\Service\Processor\UploadImageFactory $uploadImage
     )
     {
         parent::__construct($context);
-        $this->uploadTeaser = $uploadTeaser;
+        $this->uploadImage = $uploadImage;
     }
 
     /**
@@ -28,7 +28,7 @@ class Upload extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         try {
-            $result = $this->uploadTeaser->create()->processUpload();
+            $result = $this->uploadImage->create()->processUpload('cms_image_teaser', \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH);
         } catch (\Exception $e)
         {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];

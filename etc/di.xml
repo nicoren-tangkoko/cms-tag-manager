@@ -13,4 +13,17 @@
     <type name="Magento\Cms\Model\Page">
         <plugin name="cms_teaser_image_url_method" type="MageSuite\CmsTagManager\Plugin\CmsTeaserImageUrlMethod" sortOrder="10" />
     </type>
+
+    <type name="MageSuite\Opengraph\Service\TagsCollector">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="cms" xsi:type="array">
+                    <item name="image_teaser" xsi:type="array">
+                        <item name="class" xsi:type="object">\MageSuite\CmsTagManager\DataProviders\ImageTeaser</item>
+                        <item name="sortOrder" xsi:type="number">25</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>

@@ -4,15 +4,13 @@ namespace MageSuite\CmsTagManager\Plugin;
 class CmsTeaserImageUrlMethod
 {
     /**
-     * @var \MageSuite\CmsTagManager\Service\ImageTeaserUrlProvider
+     * @var \MageSuite\Opengraph\Service\CmsImageUrlProvider
      */
-    private $imageTeaserUrlProvider;
+    protected $cmsImageUrlProvider;
 
-    public function __construct(
-        \MageSuite\CmsTagManager\Service\ImageTeaserUrlProvider $imageTeaserUrlProvider
-    )
+    public function __construct(\MageSuite\Opengraph\Service\CmsImageUrlProvider $cmsImageUrlProvider)
     {
-        $this->imageTeaserUrlProvider = $imageTeaserUrlProvider;
+        $this->cmsImageUrlProvider = $cmsImageUrlProvider;
     }
 
     public function aroundGetData(\Magento\Cms\Model\Page $subject, callable $proceed, $key = '', $index = null)
@@ -21,7 +19,7 @@ class CmsTeaserImageUrlMethod
             return $proceed($key, $index);
         }
 
-        $result = $this->imageTeaserUrlProvider->getCmsTeaserUrl($subject->getCmsImageTeaser());
+        $result = $this->cmsImageUrlProvider->getImageUrl($subject->getCmsImageTeaser(), \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH);
 
         return $result;
     }

@@ -50,7 +50,9 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('src', $result['image']);
         $this->assertEquals('Cms Test Tag Page1', $result['headline']);
         $this->assertEquals('http://localhost/index.php/page_test_tag1', $result['href']);
-        $this->assertEquals('http://localhost/pub/media/cmsteaser/image1.png', $result['image']['src']);
+
+        $expectedPath = 'http://localhost/pub/media/' . \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH . 'image1.png';
+        $this->assertEquals($expectedPath, $result['image']['src']);
     }
 
 

@@ -4,15 +4,13 @@ namespace MageSuite\CmsTagManager\Plugin;
 class AfterCmsEditDataProvider
 {
     /**
-     * @var \MageSuite\CmsTagManager\Service\Admin\ImageTeaserDataProvider
+     * @var \MageSuite\Opengraph\Service\Admin\CmsImageDataProvider
      */
-    private $imageTeaserDataProvider;
+    protected $cmsImageDataProvider;
 
-    public function __construct(
-        \MageSuite\CmsTagManager\Service\Admin\ImageTeaserDataProvider $imageTeaserDataProvider
-    )
+    public function __construct(\MageSuite\Opengraph\Service\Admin\CmsImageDataProvider $cmsImageDataProvider)
     {
-        $this->imageTeaserDataProvider = $imageTeaserDataProvider;
+        $this->cmsImageDataProvider = $cmsImageDataProvider;
     }
 
     public function afterGetData(\Magento\Cms\Model\Page\DataProvider $subject, $result)
@@ -27,7 +25,7 @@ class AfterCmsEditDataProvider
             return $result;
         }
 
-        $imageTeaserDataArray = $this->imageTeaserDataProvider->getImageData($pageData['cms_image_teaser']);
+        $imageTeaserDataArray = $this->cmsImageDataProvider->getImageData($pageData['cms_image_teaser'], \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH);
 
         $result[$pageData['page_id']]['cms_image_teaser'] = $imageTeaserDataArray;
 

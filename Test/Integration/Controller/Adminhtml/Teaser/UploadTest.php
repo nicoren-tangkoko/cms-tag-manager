@@ -13,7 +13,7 @@ class UploadTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
     protected $objectManager;
 
     /**
-     * @var \MageSuite\CmsTagManager\Service\Processor\UploadTeaser
+     * @var \MageSuite\Opengraph\Service\Processor\UploadImage
      */
     protected $uploadProcessor;
 
@@ -32,7 +32,7 @@ class UploadTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
         parent::setUp();
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
-        $this->uploadProcessor = $this->objectManager->create(\MageSuite\CmsTagManager\Service\Processor\UploadTeaser::class);
+        $this->uploadProcessor = $this->objectManager->create(\MageSuite\Opengraph\Service\Processor\UploadImage::class);
 
         $this->tagsRepository = $this->objectManager->create(\MageSuite\CmsTagManager\Api\TagsRepositoryInterface::class);
 
@@ -61,7 +61,7 @@ class UploadTest extends \Magento\TestFramework\TestCase\AbstractBackendControll
         $this->assertTrue(isset($response['name']));
 
         $this->assertTrue(isset($response['name']));
-        $path = $this->filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath() . 'cmsteaser/' . $response['name'];
+        $path = $this->filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath() . \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH . $response['name'];
         $fileExist = file_exists($path);
         $this->assertTrue($fileExist);
     }
