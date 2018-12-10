@@ -23,7 +23,7 @@ class AroundFilterByTag
 
     public function aroundAddFieldToFilter(\Magento\Cms\Model\ResourceModel\Page\Collection $subject, callable $proceed, $field, $condition)
     {
-        if($field != 'cms_page_tags'){
+        if($field != 'cms_page_tags' or !isset($condition['in'])){
             return $proceed($field, $condition);
         }
 
