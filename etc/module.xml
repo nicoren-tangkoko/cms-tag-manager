@@ -6,6 +6,7 @@
             <module name="MageSuite_ContentConstructor" />
             <module name="MageSuite_ContentConstructorAdmin" />
             <module name="MageSuite_ContentConstructorFrontend" />
+            <module name="MageSuite_ImageResize" />
         </sequence>
     </module>
 </config>

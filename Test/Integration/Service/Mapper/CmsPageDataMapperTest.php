@@ -26,7 +26,6 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
-
         $this->dataMapper = $this->objectManager->create(\MageSuite\CmsTagManager\Service\Mapper\CmsPageDataMapper::class);
 
         $this->cmsPageCollection = $this->objectManager->create(\Magento\Cms\Model\ResourceModel\Page\Collection::class);
@@ -38,6 +37,8 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testItMapsPageCorrectly()
     {
+        $this->prepareImages();
+
         $cmsCollection = $this->cmsPageCollection;
 
         $cmsCollection->addFieldToFilter('identifier', 'page_test_tag1');
@@ -51,13 +52,18 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Cms Test Tag Page1', $result['headline']);
         $this->assertEquals('http://localhost/index.php/page_test_tag1', $result['href']);
 
-        $expectedPath = 'http://localhost/pub/media/' . \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH . 'image1.png';
-        $this->assertEquals($expectedPath, $result['image']['src']);
+        $this->assertEquals('http://localhost/pub/media/cmsteaser/424x300/image1.jpg', $result['image']['src']);
+        $this->assertEquals('http://localhost/pub/media/cmsteaser/424x300/image1.jpg, http://localhost/pub/media/cmsteaser/848x600/image1.jpg 2x', $result['image']['srcSet']);
     }
 
-
-    public static function loadPages() {
-        include __DIR__.'/../../../_files/pages.php';
+    public static function loadPages()
+    {
+        include __DIR__ . '/../../../_files/pages.php';
     }
 
+    protected function prepareImages()
+    {
+        copy(__DIR__ . '/../../../_files/image1.jpg', BP . '/pub/media/cmsteaser/image1.jpg');
+        copy(__DIR__ . '/../../../_files/image2.jpg', BP . '/pub/media/cmsteaser/image2.jpg');
+    }
 }

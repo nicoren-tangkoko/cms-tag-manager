@@ -3,37 +3,43 @@ namespace MageSuite\CmsTagManager\Service\Mapper;
 
 class CmsPageDataMapper
 {
+    const CMS_TEASER_MODULE = 'MageSuite_ContentConstructorFrontend';
+    const CMS_TEASER_IMAGE_ID = 'cms_teaser_image';
+    const CMS_TEASER_IMAGE_ID_2X = 'cms_teaser_image_2x';
+
     /**
      * @var \Magento\Cms\Helper\Page
      */
-    private $cmsPageHelper;
+    protected $cmsPageHelper;
+
     /**
-     * @var \MageSuite\ContentConstructorFrontend\Service\MediaResolver
+     * @var \MageSuite\CmsTagManager\Service\Resize
      */
-    private $mediaResolver;
+    protected $imageResize;
 
     public function __construct(
         \Magento\Cms\Helper\Page $cmsPageHelper,
-        \MageSuite\ContentConstructorFrontend\Service\MediaResolver $mediaResolver
-    )
-    {
+        \MageSuite\CmsTagManager\Service\Resize $imageResize
+    ) {
         $this->cmsPageHelper = $cmsPageHelper;
-        $this->mediaResolver = $mediaResolver;
+        $this->imageResize = $imageResize;
     }
 
     public function mapPage($page)
     {
-        $url = false;
-        if($page->getCmsImageTeaser()) {
-            $url = $page->getCmsTeaserImageUrl();
+        $imageUrl = '';
+
+        if ($page->getCmsImageTeaser()) {
+            $imageUrl = $this->imageResize->getUrl($page->getCmsTeaserImageUrl(), self::CMS_TEASER_MODULE, self::CMS_TEASER_IMAGE_ID);
         }
+
         $pagesData = [
             'id' => $page->getId(),
             'headline' => $page->getTitle(),
             'href' => $this->cmsPageHelper->getPageUrl($page->getId()),
             'image' => [
-                'src' => $url ? $url :'',
-                'srcSet' => $url ? $this->mediaResolver->resolveSrcSet($url) : ''
+                'src' => $imageUrl,
+                'srcSet' => $imageUrl ? $this->imageResize->resolveSrcSet($page->getCmsTeaserImageUrl(), self::CMS_TEASER_MODULE, [self::CMS_TEASER_IMAGE_ID, self::CMS_TEASER_IMAGE_ID_2X]) : ''
             ],
             'displayVariant' => 2
         ];
