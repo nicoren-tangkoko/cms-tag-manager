@@ -4,12 +4,12 @@
     <media>
         <images module="MageSuite_ContentConstructorFrontend">
             <image id="cms_teaser_image" type="image">
-                <width>424</width>
-                <height>300</height>
+                <width>640</width>
+                <height>539</height>
             </image>
             <image id="cms_teaser_image_2x" type="image">
-                <width>848</width>
-                <height>600</height>
+                <width>1280</width>
+                <height>1070</height>
             </image>
         </images>
     </media>
