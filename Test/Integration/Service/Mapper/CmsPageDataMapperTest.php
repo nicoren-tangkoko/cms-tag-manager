@@ -52,8 +52,9 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Cms Test Tag Page1', $result['headline']);
         $this->assertEquals('http://localhost/index.php/page_test_tag1', $result['href']);
 
-        $this->assertEquals('http://localhost/pub/media/cmsteaser/424x300/image1.jpg', $result['image']['src']);
-        $this->assertEquals('http://localhost/pub/media/cmsteaser/424x300/image1.jpg, http://localhost/pub/media/cmsteaser/848x600/image1.jpg 2x', $result['image']['srcSet']);
+        $this->assertContains('image1.jpg', $result['image']['src']);
+        $this->assertContains('image1.jpg', $result['image']['srcSet']);
+        $this->assertContains('image1.jpg 2x', $result['image']['srcSet']);
     }
 
     public static function loadPages()
