@@ -20,10 +20,12 @@ class AfterCmsEditDataProvider
         }
 
         foreach($result as $pageData){
-            if (isset($pageData['cms_image_teaser'])) {
-                    $imageTeaserDataArray = $this->cmsImageDataProvider->getImageData($pageData['cms_image_teaser'], \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH);
-                    $result[$pageData['page_id']]['cms_image_teaser'] = $imageTeaserDataArray;
+            if (!isset($pageData['cms_image_teaser'])) {
+                continue;
             }
+
+            $imageTeaserDataArray = $this->cmsImageDataProvider->getImageData($pageData['cms_image_teaser'], \MageSuite\CmsTagManager\Model\ImageTeaser::CMS_IMAGE_TEASER_PATH);
+            $result[$pageData['page_id']]['cms_image_teaser'] = $imageTeaserDataArray;
         }
 
         return $result;
