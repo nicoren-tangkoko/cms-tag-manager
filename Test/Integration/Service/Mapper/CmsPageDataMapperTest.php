@@ -22,7 +22,7 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
      */
     protected $cmsPageCollection;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
@@ -52,9 +52,11 @@ class CmsPageDataMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Cms Test Tag Page1', $result['headline']);
         $this->assertEquals('http://localhost/index.php/page_test_tag1', $result['href']);
 
-        $this->assertContains('image1.jpg', $result['image']['src']);
-        $this->assertContains('image1.jpg', $result['image']['srcSet']);
-        $this->assertContains('image1.jpg 2x', $result['image']['srcSet']);
+        $assertContains = method_exists($this, 'assertStringContainsString') ? 'assertStringContainsString' : 'assertContains';
+
+        $this->$assertContains('image1.jpg', $result['image']['src']);
+        $this->$assertContains('image1.jpg', $result['image']['srcSet']);
+        $this->$assertContains('image1.jpg 2x', $result['image']['srcSet']);
     }
 
     public static function loadPages()
