@@ -18,6 +18,9 @@
                     <item name="dataScope" xsi:type="string">cms_page_tags</item>
                     <item name="sortOrder" xsi:type="number">30</item>
                     <item name="notice" xsi:type="string" translate="true">Please insert all tags assigned to this CMS Page. Follow comma separated pattern without surrounding spaces. Example: "first tag,second tag,tagThree,lastTag"</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-forbid-semicolon" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
